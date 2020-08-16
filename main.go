@@ -3,6 +3,7 @@ package main
 import "github.com/kataras/iris/v12"
 
 func main() {
+	println(out())
 	app := iris.Default()
 	app.Use(myMiddleware)
 
@@ -18,4 +19,8 @@ func main() {
 func myMiddleware(ctx iris.Context) {
 	ctx.Application().Logger().Infof("Runs before %s", ctx.Path())
 	ctx.Next()
+}
+
+func out() string{
+	return "hello"
 }
