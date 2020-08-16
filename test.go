@@ -1,4 +1,4 @@
-package main
+package twins
 
 import "github.com/kataras/iris/v12"
 
