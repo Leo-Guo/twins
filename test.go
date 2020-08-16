@@ -9,6 +9,6 @@ func myMiddleware(ctx iris.Context) {
 	ctx.Next()
 }
 
-func out() string{
+func Out() string{
 	return "hello"
 }
