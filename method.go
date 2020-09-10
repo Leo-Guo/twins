@@ -2,9 +2,9 @@ package twins
 
 import (
 	"github.com/Leo-Guo/twins/common"
-	"github.com/kataras/iris/v12"
-	"github.com/Leo-Guo/twins/service/request"
 	"github.com/Leo-Guo/twins/service/compare"
+	"github.com/Leo-Guo/twins/service/request"
+	"github.com/kataras/iris/v12"
 )
 
 

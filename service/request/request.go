@@ -4,6 +4,7 @@ import (
 	"github.com/Leo-Guo/twins/common"
 	"github.com/Leo-Guo/twins/components/http"
 	jsoniter "github.com/json-iterator/go"
+	"strings"
 	"time"
 )
 
@@ -15,13 +16,13 @@ type RpcConfig struct {
 
 const DefaultTimeout = 3 * time.Second
 
-func Send(service string,url string,method string,req interface{},res interface{}) (common.ErrorCode, []byte){
+func Send(service string, url string, method string, req interface{}, res interface{}) (common.ErrorCode, []byte) {
 	// 序列化 post_body
 	reqBody, errMarshal := jsoniter.Marshal(req)
 	if errMarshal != nil {
 		return common.ERROR_MARSHAL, nil
 	}
-	if method == "POST"{
+	if strings.EqualFold(method, "POST") {
 		response, errReq := http.PostJson(service, url, reqBody, DefaultTimeout)
 		if errReq != nil {
 			return common.ERROR_REQUEST_UNKNOW, nil

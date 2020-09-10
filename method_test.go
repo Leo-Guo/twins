@@ -1,4 +1,4 @@
-package request
+package twins
 
 import (
 	"encoding/json"
@@ -22,20 +22,13 @@ type testRet struct {
 	NowTime int64       `json:"now_time"`
 }
 
-func TestRequest(t *testing.T) {
-	req := &testReq{StoreId: 63503, Class1Id: 2011, SortType: 1, FilterTypes: []int{1, 2}, Page: 1, PageSize: 50}
-	res := &testRet{}
-	_, response := Send("http://10.2.1.12:8283", "/app/list/get-product-list-by-class-and-filter", "POST", req, res)
-	println(&res)
-	println(string(response))
-}
 
 func TestRequestDiff(t *testing.T){
 	reqA := &testReq{StoreId: 63503, Class1Id: 2011, SortType: 1, FilterTypes: []int{1, 2}, Page: 1, PageSize: 50}
 	res := &testRet{}
-	_, responseA := Send("http://localhost:8234", "/app/list/get-product-list-by-class-and-filter", "POST", reqA, res)
+	_, responseA := SendRequest("http://localhost:8234", "/app/list/get-product-list-by-class-and-filter", "POST", reqA, res)
 	reqB := &testReq{StoreId: 63503, Class1Id: 2011, SortType: 1, FilterTypes: []int{1, 2}, Page: 1, PageSize: 50}
-	_, responseB := Send("http://127.0.0.1:9010", "/app/list/get-product-list-by-class-and-filter", "POST", reqB, res)
+	_, responseB := SendRequest("http://127.0.0.1:9010", "/app/list/get-product-list-by-class-and-filter", "POST", reqB, res)
 
 	var (
 		json1 map[string]interface{}
@@ -53,3 +46,4 @@ func TestRequestDiff(t *testing.T){
 
 	println(retString,isDiff)
 }
+
